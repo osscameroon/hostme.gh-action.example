@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: deployment
-        uses: actions/hostme.gh-action@v1
+        uses: osscameroon/hostme.gh-action@v1
         with:
           h-project-name: '${{ github.event.repository.name }}'
           h-api-token: '${{ secrets.HOSTME_API_TOKEN }}'
