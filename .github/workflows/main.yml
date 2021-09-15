@@ -1,0 +1,18 @@
+name: Hostme Deployment
+
+on: [push]
+
+jobs:
+  hostme_deployment_job:
+    runs-on: ubuntu-latest
+    name: A job to deploy on Hostme.Space your project
+    steps:
+      - uses: actions/checkout@v2
+      - id: deployment
+        uses: actions/hostme.gh-action@v1
+        with:
+          h-project-name: '${{ github.event.repository.name }}'
+          h-api-token: '${{ secrets.HOSTME_API_TOKEN }}'
+      - run: echo Hostme.Space deployment Job ended !
+        shell: bash
+
