@@ -5,14 +5,25 @@ on: [push]
 jobs:
   hostme_deployment_job:
     runs-on: ubuntu-latest
-    name: A job to deploy on Hostme.Space your project
+    name: Hostme.Space deployment
+    env:
+      # You can change that env variable to the appropriate for your need
+      PROJECT_ZIP: '${{ github.event.repository.name }}.zip'
     steps:
       - uses: actions/checkout@v2
       - id: deployment
-        uses: osscameroon/hostme.gh-action@v1
+        uses: osscameroon/hostme.gh-action@v2
         with:
-          h-project-name: '${{ github.event.repository.name }}'
-          h-api-token: '${{ secrets.HOSTME_API_TOKEN }}'
-      - run: echo Hostme.Space deployment Job ended !
+          project-zip: '${{ env.PROJECT_ZIP }}'
+          hostme-project-name: '${{ github.event.repository.name }}'
+          hostme-api-token: '${{ secrets.HOSTME_API_TOKEN }}'
+          # We zip the project 
+          # (but if we want to build something, we can add those commands here)
+          commands: |
+            echo [-] Zipping of the project in progress...
+            zip -r ${{ env.PROJECT_ZIP }} .
+      # We delete the zip we just created
+      - run: |
+          echo Cleaning in progress....
+          rm -rf ${{ env.PROJECT_ZIP }}
         shell: bash
-
