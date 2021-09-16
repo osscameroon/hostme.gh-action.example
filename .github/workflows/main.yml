@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: deployment
-        uses: osscameroon/hostme.gh-action@v2
+        uses: actions/hostme.gh-action@v2
         with:
           project-zip: '${{ env.PROJECT_ZIP }}'
           hostme-project-name: '${{ github.event.repository.name }}'
