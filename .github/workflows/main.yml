@@ -6,25 +6,12 @@ jobs:
   hostme_deployment_job:
     runs-on: ubuntu-latest
     name: Hostme.Space deployment
-    env:
-      # You can change theese env variables to the appropriates for your need
-      FOLDER_TO_ZIP: '.'
-      ZIP_FILE_NAME: '${{ github.event.repository.name }}.zip'
+
     steps:
       - uses: actions/checkout@v2
       - id: deployment
-        uses: osscameroon/hostme.gh-action@v2
+        uses: osscameroon/hostme.gh-action@v3
         with:
-          project-zip: '${{ env.ZIP_FILE_NAME }}'
-          hostme-project-name: '${{ github.event.repository.name }}'
-          hostme-api-token: '${{ secrets.HOSTME_API_TOKEN }}'
-          # We zip the project by excluding .git subdirectory
-          # (but if we want to build something, we can add those commands here)
+          api-token: '${{ secrets.HOSTME_API_TOKEN }}'
           commands: |
-            echo [-] Zipping of the project in progress...
-            zip -r ${{ env.ZIP_FILE_NAME }} ${{ env.FOLDER_TO_ZIP }} -x '*.git*'
-      # We delete the zip we just created
-      - run: |
-          echo Cleaning in progress....
-          rm -rf ${{ env.ZIP_FILE_NAME }}
-        shell: bash
+            echo "${{ github.event.repository.name }}" > h_name.out
