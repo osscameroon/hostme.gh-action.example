@@ -9,9 +9,7 @@ The main project for that github action is available here : https://github.com/o
 
 - [Create the github secret](https://docs.github.com/en/actions/reference/encrypted-secrets) `HOSTME_API_TOKEN`, that will contain your API TOKEN 
 
-
-![screen](./screenshot.png)
-
+![screen](https://github.com/osscameroon/hostme.gh-action/blob/master/screen.png)
 
 ## Result 
 
