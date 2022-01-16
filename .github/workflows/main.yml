@@ -14,5 +14,5 @@ jobs:
         with:
           api-token: '${{ secrets.HOSTME_API_TOKEN }}'
           commands: |
-            echo "${{ github.event.repository.name }}" > h_name.out
+            echo "hostmegh-actionexample" > h_name.out
             echo "." > h_target.out
